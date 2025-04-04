@@ -17,6 +17,12 @@ export const config = {
         secret: process.env.JWT_SECRET,
         expires: process.env.JWT_EXPIRES
 
+    },
+    admin: {
+        email: process.env.ADMIN_EMAIL,
+        password: process.env.ADMIN_PASSWORD
+
+
     }
     
 }

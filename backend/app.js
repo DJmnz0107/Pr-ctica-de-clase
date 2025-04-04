@@ -7,6 +7,7 @@ import employeeRoutes from "./src/routes/employee.js"
 import branchRoutes from "./src/routes/branch.js"
 import reviewRoutes from "./src/routes/reviews.js"
 import employeeRegisterRoutes from "./src/routes/registerEmployee.js"
+import loginRoute from "./src/routes/login.js"
 import cookieParser from 'cookie-parser';
 
 //Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
@@ -22,6 +23,7 @@ app.use("/api/employees", employeeRoutes);
 app.use("/api/branches", branchRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/registerEmployee", employeeRegisterRoutes)
+app.use("/api/login", loginRoute);
 
 
 
