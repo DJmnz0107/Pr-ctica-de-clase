@@ -114,10 +114,6 @@ const HTMLRecoveryEmail = (code) => {
     `;
 };
 
-// Ejemplo de cómo usarlo
-const recoveryCode = generateRecoveryCode();
-const emailContent = HTMLRecoveryEmail(recoveryCode);
 
-console.log(emailContent);  // Esto imprimirá el HTML con el código aleatorio de recuperación
 
 export {sendEmail, HTMLRecoveryEmail};

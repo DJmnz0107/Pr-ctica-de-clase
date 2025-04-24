@@ -11,7 +11,7 @@ import loginRoute from "./src/routes/login.js"
 import cookieParser from 'cookie-parser';
 import logoutRoute from "./src/routes/logout.js"
 import registerClientsRoutes from "./src/routes/registerClients.js";
-import RecoveryPasswordController from './src/controllers/recoveryPasswordController.js';
+import RecoveryPasswordRoutes from './src/routes/recoveryPassword.js';
 
 //Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
 const app = express();
@@ -29,7 +29,7 @@ app.use("/api/registerEmployee", employeeRegisterRoutes);
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/registerClients", registerClientsRoutes);
-app.use("/api/RecoveryPassword", RecoveryPasswordController);
+app.use("/api/RecoveryPassword", RecoveryPasswordRoutes);
 
 
 
