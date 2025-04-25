@@ -4,7 +4,7 @@ import {config} from "../config.js";
 //1- Configurar quien lo envia
 
 const transporter = nodemailer.createTransport({
-    host:"smpt.gmail.com",
+    host:"smtp.gmail.com",
     port:465,
     secure:true,
     auth: {
@@ -16,22 +16,20 @@ const transporter = nodemailer.createTransport({
 
 //¿A quien le voy a mandar el correo?
 
-const sendEmail = async (to, subject, text) => {
-
+const sendEmail = async (to, subject, text, code) => {
     try {
         const info = await transporter.sendMail({
             from: '"Soporte EPA" <diegojim007@gmail.com>',
             to,
             subject,
             text,
-            html
-        })
+            html: HTMLRecoveryEmail(code)  // Aquí invocas la función para generar el HTML
+        });
 
         return info;
     } catch (error) {
         console.log("error" + error);
     }
-
 };
 
 //ULTIMO PASO -> Generar el HTML a enviar

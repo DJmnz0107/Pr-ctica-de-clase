@@ -34,7 +34,7 @@ RecoveryPasswordController.requestCode = async (req, res) => {
             return res.json({message:"User not found"})
         }
 
-        const code = Math.floor(10000 + Math.random() * 90000).toString;
+        const code = Math.floor(10000 + Math.random() * 90000).toString();
 
         const token = jsonwebtoken.sign(
 
@@ -46,7 +46,7 @@ RecoveryPasswordController.requestCode = async (req, res) => {
 
         )
 
-        res.cookie("tokenReoveryCode", token, {maxAge: 20 * 60 * 1000})
+        res.cookie("tokenRecoveryCode", token, {maxAge: 20 * 60 * 1000})
 
         //ULTIMO PASO - Enviar el correo
 
@@ -64,5 +64,60 @@ RecoveryPasswordController.requestCode = async (req, res) => {
         
     }
 };
+
+//VERIFICAR CÓDIGO
+
+RecoveryPasswordController.verifyCode = async (req, res) => {
+    const {code} = req.body;
+
+
+    try {
+        const token = req.cookies.tokenRecoveryCode;
+        //Extraer el código del token
+
+        const decoded = jsonwebtoken.verify(token, config.JWT.secret);
+
+        //Compa rar 1 el codigo que el usuario escribe
+        //con el codigo que tengo guardado en el token
+
+
+        if(decoded.code !== code) {
+        return res.json({message:"Invalid code"})
+        }
+
+
+
+
+        const newToken = jsonwebtoken.sign(
+            //¿Que vamos a guardar?
+            {
+                email: decoded.email,
+                code: decoded.code,
+                userType: decoded.userType,
+                verified:true
+            },
+
+            //2- Secret key
+
+            config.JWT.secret,
+            //3- Cuando expira
+            {
+                expiresIn:"20m"
+            }
+
+
+        );
+
+        res.cookie("tokenRecoveryCode", newToken, {maxAge:20 * 60 * 1000})
+
+        res.json({message:"Code verified successfully"})
+
+
+
+
+    } catch (error) {
+        console.log("errro" + error);
+    }
+}
 
 export default RecoveryPasswordController;
