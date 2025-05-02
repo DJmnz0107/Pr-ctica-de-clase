@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.route("/requestCode").post(RecoveryPasswordController.requestCode);
 router.route("/verifyCode").post(RecoveryPasswordController.verifyCode);
-//router.route("/newPassword").post();
+router.route("/newPassword").post(RecoveryPasswordController.newPassword);
 
 export default router;
