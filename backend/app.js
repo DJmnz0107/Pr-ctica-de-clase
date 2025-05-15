@@ -12,6 +12,8 @@ import cookieParser from 'cookie-parser';
 import logoutRoute from "./src/routes/logout.js"
 import registerClientsRoutes from "./src/routes/registerClients.js";
 import RecoveryPasswordRoutes from './src/routes/recoveryPassword.js';
+import providersRoutes from "./src/routes/Providers.js"
+import brandsRoutes from "./src/routes/brands.js"
 
 //Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
 const app = express();
@@ -30,7 +32,8 @@ app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/registerClients", registerClientsRoutes);
 app.use("/api/RecoveryPassword", RecoveryPasswordRoutes);
-
+app.use("/api/providers", providersRoutes);
+app.use("/api/brands", brandsRoutes)
 
 
 //Exporto la constante para poder usar express en otros archivos
