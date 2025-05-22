@@ -14,25 +14,39 @@ import registerClientsRoutes from "./src/routes/registerClients.js";
 import RecoveryPasswordRoutes from './src/routes/recoveryPassword.js';
 import providersRoutes from "./src/routes/Providers.js"
 import brandsRoutes from "./src/routes/brands.js"
+import { validateAuthToken } from './src/middlewares/validateAuthToken.js';
+import cors from "cors";
+
+
+
 
 //Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
 const app = express();
+
+app.use(
+    cors({
+      origin: "http://localhost:5173",
+      // Permitir envío de cookies y credenciales
+      credentials: true
+    })
+  );
 
 //middleware
 app.use(express.json());
 
 app.use(cookieParser());
-app.use("/api/products", productsRoutes);
+app.use("/api/registerEmployee", validateAuthToken(["admin", "employee"]), employeeRegisterRoutes);
+app.use("/api/products", validateAuthToken(["admin", "employee"]),  productsRoutes);
 app.use("/api/clients", clientRoutes );
 app.use("/api/employees", employeeRoutes);
 app.use("/api/branches", branchRoutes);
 app.use("/api/reviews", reviewRoutes);
-app.use("/api/registerEmployee", employeeRegisterRoutes);
+app.use("/api/registerEmployee", validateAuthToken(["admin"]), employeeRegisterRoutes);
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/registerClients", registerClientsRoutes);
 app.use("/api/RecoveryPassword", RecoveryPasswordRoutes);
-app.use("/api/providers", providersRoutes);
+app.use("/api/providers", validateAuthToken(["admin"]), providersRoutes);
 app.use("/api/brands", brandsRoutes)
 
 

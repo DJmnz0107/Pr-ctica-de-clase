@@ -1,0 +1,124 @@
+/* src/css/empleadoForm.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.empleado-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.empleado-heading {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.empleado-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.empleado-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.empleado-label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #34495e;
+}
+
+.empleado-input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+  font-size: 14px;
+}
+
+.empleado-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+}
+
+.empleado-button {
+  padding: 12px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.empleado-button:hover {
+  background-color: #45a049;
+}
+
+.empleado-button.secondary {
+  background-color: #3498db;
+  margin-top: 10px;
+}
+
+.empleado-button.secondary:hover {
+  background-color: #2980b9;
+}
+
+.empleado-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+  border-top: 2px solid #eee;
+}
+
+.empleado-list-item {
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #2c3e50;
+  transition: background 0.2s ease;
+}
+
+.empleado-list-item:hover {
+  background-color: #f9f9f9;
+}
+
+/* Botones específicos de la lista */
+.empleado-list-item button {
+    padding: 8px 12px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .empleado-list-item button:nth-child(1) {
+    background-color: #f39c12;
+  }
+  
+  .empleado-list-item button:nth-child(1):hover {
+    background-color: #e67e22;
+  }
+  
+  .empleado-list-item button:nth-child(2) {
+    background-color: #e74c3c;
+  }
+  
+  .empleado-list-item button:nth-child(2):hover {
+    background-color: #c0392b;
+  }
+  
+  

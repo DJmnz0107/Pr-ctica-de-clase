@@ -72,7 +72,7 @@ loginController.login = async (req, res) => {
             (error, token) => {
 
                 if(error) console.log("error" + error)
-                    res.cookie("authToken")
+                    res.cookie("authToken", token)
                 res.json({message: "login successful"})
             }
         )
