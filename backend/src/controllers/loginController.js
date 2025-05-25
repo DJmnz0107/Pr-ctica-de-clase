@@ -2,87 +2,70 @@ import bcrypt from "bcryptjs";
 import jsonwebtoken from "jsonwebtoken";
 import clientModel from "../models/Clients.js";
 import employeeModel from "../models/Employees.js";
-import {config} from "../config.js"
-
-
-//Array de funciones
+import { config } from "../config.js";
 
 const loginController = {};
 
 loginController.login = async (req, res) => {
+  const { email, password } = req.body;
 
-    const {email, password} = req.body;
+  try {
+    let userFound;
+    let userType;
 
-    try {
-        let userFound;
-        let userType;
+    // Admin
+    if (email === config.admin.email && password === config.admin.password) {
+      userType = "admin";
+      userFound = { _id: "admin" };
 
-        //Admin, Empleados y Clientes
+    } else {
+      // Empleado
+      userFound = await employeeModel.findOne({ email });
+      userType = "employee";
 
-        if(email === config.admin.email && password === config.admin.password) {
-            userType = "admin";
-            userFound = {_id: "admin"};
+      // Cliente
+      if (!userFound) {
+        userFound = await clientModel.findOne({ email });
+        userType = "client";
+      }
 
-        } else {
+      if (!userFound) {
+        return res.status(404).json({ success: false, message: "Usuario no encontrado" });
+      }
 
-            //empleado
-
-            userFound = await employeeModel.findOne({email});
-            userType = "employee";
-
-            //cliente
-
-            if(!userFound) {
-
-                userFound = await clientModel.findOne({email}); 
-                userType = "client";
-
-            }
-
-            
-
-
-        }
-
-        if(!userFound) {
-            return res.json({message:"user not found"});
-        }
-
-
-        //Desencriptar la contraseña si no es admin 
-
-        if(userType !== "admin") {
-            const isMatch = bcrypt.compare(password, userFound.password)
-            if(!isMatch) {
-                res.json({message: "Invalid password"})
-            }
-
-        }
-
-        //TOKEN 
-
-        jsonwebtoken.sign(
-            {id:userFound._id, userType},
-            //2- Secreto
-            config.JWT.secret, 
-            //3- Fecha de expiración
-            {expiresIn: config.JWT.expires},
-            //4- Función flecha 
-
-            (error, token) => {
-
-                if(error) console.log("error" + error)
-                    res.cookie("authToken", token)
-                res.json({message: "login successful"})
-            }
-        )
-    } catch (error) {
-
-        console.log("error " + error)
-        
+      // Validar contraseña
+      const isMatch = await bcrypt.compare(password, userFound.password);
+      if (!isMatch) {
+        return res.status(401).json({ success: false, message: "Contraseña incorrecta" });
+      }
     }
 
+    // Generar token
+    jsonwebtoken.sign(
+      { id: userFound._id, userType },
+      config.JWT.secret,
+      { expiresIn: config.JWT.expires },
+      (error, token) => {
+        if (error) {
+          console.error("Error al generar token:", error);
+          return res.status(500).json({ success: false, message: "Error al generar token" });
+        }
 
+        res.cookie("authToken", token, { httpOnly: true });
+        return res.status(200).json({
+          success: true,
+          message: "Inicio de sesión exitoso",
+          user: {
+            userType,
+            id: userFound._id,
+          },
+        });
+      }
+    );
+  } catch (error) {
+    console.error("Error en login:", error);
+    return res.status(500).json({ success: false, message: "Error interno del servidor" });
+  }
 };
 
 export default loginController;
