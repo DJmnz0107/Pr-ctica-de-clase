@@ -34,14 +34,26 @@ export default function ProductoForm({ userType, onLogout }) {
         },
         credentials: "include",
       });
+  
       if (!res.ok) throw new Error("Error en la petición");
+  
       const data = await res.json();
-      setProductos(data);
+      console.log("Respuesta de la API:", data);  // Imprime para verificar la estructura de datos.
+  
+      // Si es un array, asigna los productos al estado.
+      if (Array.isArray(data)) {
+        setProductos(data);
+      } else {
+        setProductos([]);  // O manejar el error de la respuesta no válida.
+        throw new Error("La respuesta no es un array.");
+      }
+      
     } catch (err) {
       console.error("Error al cargar productos", err);
       setMessage("Error al cargar productos");
     }
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
