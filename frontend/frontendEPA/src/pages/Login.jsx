@@ -18,9 +18,7 @@ const Login = ({ onLogin }) => {
     setError("");
 
     try {
-      const API_URL = process.env.NODE_ENV === "development"
-        ? "https://pr-ctica-de-clase.onrender.com/api/login"
-        : "/api/login";
+      const API_URL = "https://pr-ctica-de-clase.onrender.com/api/login"
 
       const response = await fetch(API_URL, {
         method: "POST",
