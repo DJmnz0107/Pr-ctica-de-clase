@@ -19,7 +19,7 @@ const Login = ({ onLogin }) => {
 
     try {
       const API_URL = process.env.NODE_ENV === "development"
-        ? "http://localhost:4000/api/login"
+        ? "https://pr-ctica-de-clase.onrender.com/api/login"
         : "/api/login";
 
       const response = await fetch(API_URL, {

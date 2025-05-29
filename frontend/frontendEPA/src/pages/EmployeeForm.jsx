@@ -23,8 +23,8 @@ export default function EmpleadoForm({ userType, onLogout }) {
   const [confirmDelete, setConfirmDelete] = useState({ visible: false, id: null });
   const navigate = useNavigate();
 
-  const API_REGISTRAR = "http://localhost:4000/api/registerEmployee";
-  const API_EMPLEADOS = "http://localhost:4000/api/employees";
+  const API_REGISTRAR = "https://pr-ctica-de-clase.onrender.com/api/registerEmployee";
+  const API_EMPLEADOS = "https://pr-ctica-de-clase.onrender.com/api/employees";
 
   useEffect(() => {
     if (!userType) {

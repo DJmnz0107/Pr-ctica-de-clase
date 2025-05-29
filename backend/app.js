@@ -25,7 +25,7 @@ const app = express();
 
 app.use(
     cors({
-      origin: "http://localhost:5173",
+      origin: "https://pr-ctica-de-clase.vercel.app",
       // Permitir envío de cookies y credenciales
       credentials: true
     })

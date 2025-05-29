@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/product.css";
 
-const API_BASE_URL = "http://localhost:4000/api/products";
+const API_BASE_URL = "https://pr-ctica-de-clase.onrender.com/api/products";
 
 export default function ProductoForm({ userType, onLogout }) {
   const [form, setForm] = useState({

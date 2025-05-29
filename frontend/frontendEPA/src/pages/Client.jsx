@@ -25,7 +25,7 @@ export default function ClienteForm({ userType, onLogout }) {
 
   const navigate = useNavigate();
 
-  const API_BASE = "http://localhost:4000/api";
+  const API_BASE = "https://pr-ctica-de-clase.onrender.com/api";
   const API_REGISTER_CLIENT = `${API_BASE}/registerClients`;
   const API_CLIENTS = `${API_BASE}/clients`;
 
