@@ -15,6 +15,7 @@ import RecoveryPasswordRoutes from './src/routes/recoveryPassword.js';
 import providersRoutes from "./src/routes/Providers.js"
 import brandsRoutes from "./src/routes/brands.js"
 import { validateAuthToken } from './src/middlewares/validateAuthToken.js';
+import faqsRoutes from "./src/routes/Faqs.js"
 import cors from "cors";
 
 
@@ -48,6 +49,7 @@ app.use("/api/registerClients", registerClientsRoutes);
 app.use("/api/RecoveryPassword", RecoveryPasswordRoutes);
 app.use("/api/providers", validateAuthToken(["admin"]), providersRoutes);
 app.use("/api/brands", brandsRoutes)
+app.use("/api/faqs", faqsRoutes);
 
 
 //Exporto la constante para poder usar express en otros archivos
