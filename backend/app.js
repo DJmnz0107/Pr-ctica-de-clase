@@ -17,6 +17,9 @@ import brandsRoutes from "./src/routes/brands.js"
 import { validateAuthToken } from './src/middlewares/validateAuthToken.js';
 import faqsRoutes from "./src/routes/Faqs.js"
 import cors from "cors";
+import fs from "fs";
+import path from "path";
+import swaggerUi from "swagger-ui-express";
 
 
 
@@ -34,6 +37,15 @@ app.use(
 
 //middleware
 app.use(express.json());
+
+//Traemos el archivo JSON
+
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(path.resolve("./Documentacion EPA.json"), "utf-8")
+);
+
+//Mostramos el archivo al ingresar a /api/docs
+app.use("/api/docs",swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(cookieParser());
 app.use("/api/registerEmployee", employeeRegisterRoutes);

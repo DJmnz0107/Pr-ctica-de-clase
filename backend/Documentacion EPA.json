@@ -1,0 +1,393 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Documentación para API de Ferreteria EPA",
+    "description": "¡Hola!, esta es mi API par Ferreteria EPA",
+    "contact": {
+      "email": "you@your-company.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/ricaldone-a0c/FerreteriaEPAMERN/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "paths": {
+    "/api/products": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Select a products",
+        "description": "Al utilizar este método devuelve todos los datos de la colección productos.",
+        "operationId": "get-api-products",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Update a products",
+        "description": "Al utilizar este método actualizamos un producto.",
+        "operationId": "put-api-products",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_products_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Insert a products",
+        "description": "Al utilizar este método agregamos un producto nuevo.",
+        "operationId": "post-api-products",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_products_body_1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Delete a products",
+        "description": "Utilizando este método eliminamos un producto.",
+        "operationId": "delete-api-products",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/reviews": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "summary": "Select a reviews",
+        "description": "Al utilizar este método devuelve todos los datos de la colección reviews.",
+        "operationId": "get-api-reviews",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Reviews"
+        ],
+        "summary": "Update a reviews",
+        "description": "Al utilizar este método actualizamos una review.",
+        "operationId": "put-api-reviews",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_reviews_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Reviews"
+        ],
+        "summary": "Insert a reviews",
+        "description": "Al utilizar este método agregamos una review nueva.",
+        "operationId": "post-api-reviews",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_reviews_body_1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Reviews"
+        ],
+        "summary": "Delete a reviews",
+        "description": "Utilizando este método eliminamos una review.",
+        "operationId": "delete-api-reviews",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InventoryItem": {
+        "required": [
+          "id",
+          "manufacturer",
+          "name",
+          "releaseDate"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name": {
+            "type": "string",
+            "example": "Widget Adapter"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2016-08-29T09:12:33.001Z"
+          },
+          "manufacturer": {
+            "$ref": "#/components/schemas/Manufacturer"
+          }
+        }
+      },
+      "Manufacturer": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "ACME Corporation"
+          },
+          "homePage": {
+            "type": "string",
+            "format": "url",
+            "example": "https://www.acme-corp.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "408-867-5309"
+          }
+        }
+      },
+      "api_products_body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "rmluze4istprj"
+            }
+          },
+          "description": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "lo2iwbynbmaqu"
+            }
+          },
+          "price": {
+            "maximum": 500,
+            "minimum": 0.01,
+            "type": "number",
+            "x-stoplight": {
+              "id": "boyvfk3gup109"
+            }
+          },
+          "stock": {
+            "maximum": 501,
+            "minimum": 1,
+            "type": "number",
+            "x-stoplight": {
+              "id": "i3kx4yj7by7i4"
+            }
+          }
+        }
+      },
+      "api_products_body_1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "0hqlvcwpyl1i2"
+            }
+          },
+          "description": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "pz8czpkniyant"
+            }
+          },
+          "precio": {
+            "maximum": 500,
+            "minimum": 0.01,
+            "type": "number",
+            "x-stoplight": {
+              "id": "b0zzdr4mqlmaz"
+            }
+          },
+          "stock": {
+            "maximum": 500,
+            "minimum": 1,
+            "type": "number",
+            "x-stoplight": {
+              "id": "55fkwgq0xnbda"
+            }
+          }
+        }
+      },
+      "api_reviews_body": {
+        "type": "object",
+        "properties": {
+          "comment": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "od0v7oh32s1bx"
+            }
+          },
+          "rating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "number",
+            "x-stoplight": {
+              "id": "uoe9jf5wcxah5"
+            }
+          },
+          "idClient": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "92hvw2fbdmxsb"
+            }
+          }
+        }
+      },
+      "api_reviews_body_1": {
+        "type": "object",
+        "properties": {
+          "comment": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "9kdeioreqjsm5"
+            }
+          },
+          "rating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "number",
+            "x-stoplight": {
+              "id": "mweu5wpbtfi53"
+            }
+          },
+          "idClient": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "4pxqww6dd27ha"
+            }
+          }
+        }
+      }
+    }
+  }
+}
