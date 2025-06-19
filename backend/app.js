@@ -14,6 +14,7 @@ import registerClientsRoutes from "./src/routes/registerClients.js";
 import RecoveryPasswordRoutes from './src/routes/recoveryPassword.js';
 import providersRoutes from "./src/routes/Providers.js"
 import brandsRoutes from "./src/routes/brands.js"
+import tasksRoutes from "./src/routes/tasks.js"
 import { validateAuthToken } from './src/middlewares/validateAuthToken.js';
 import faqsRoutes from "./src/routes/Faqs.js"
 import cors from "cors";
@@ -59,6 +60,7 @@ app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/registerClients", registerClientsRoutes);
 app.use("/api/RecoveryPassword", RecoveryPasswordRoutes);
+app.use("/api/tasks", tasksRoutes);
 app.use("/api/providers", validateAuthToken(["admin"]), providersRoutes);
 app.use("/api/brands", brandsRoutes)
 app.use("/api/faqs", faqsRoutes);
