@@ -219,6 +219,178 @@
           }
         }
       }
+    },
+    "/api/clients": {
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Select a clients",
+        "description": "Al utilizar este método devuelve todos los datos de la colección clientes.",
+        "operationId": "get-api-clients",
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Update a clients",
+        "description": "Al utilizar este método actualizamos un cliente.",
+        "operationId": "put-api-clients",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_clients_body"
+              }
+            }
+          }
+        },
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Delete a clients",
+        "operationId": "delete-api-clients",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/faqs": {
+      "get": {
+        "tags": [
+          "faqs"
+        ],
+        "summary": "Select a faqs",
+        "description": "Al utilizar este método devuelve todos los datos de la colección faqs.",
+        "operationId": "get-api-faqs",
+        "responses": {}
+      }
+    },
+    "/api/tasks": {
+      "get": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Select a tasks",
+        "description": "Al utilizar este método devuelve todos los datos de la colección tasks.",
+        "operationId": "get-api-tasks",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Update a tasks",
+        "description": "Al utilizar este método actualizamos una task.",
+        "operationId": "put-api-tasks",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_tasks_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Inserts a tasks",
+        "description": "Al utilizar este método agregamos una task nueva.",
+        "operationId": "post-api-tasks",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_tasks_body_1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "tasks"
+        ],
+        "summary": "Delete a tasks",
+        "description": "Utilizando este método eliminamos una task.",
+        "operationId": "delete-api-tasks",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -384,6 +556,94 @@
             "type": "object",
             "x-stoplight": {
               "id": "4pxqww6dd27ha"
+            }
+          }
+        }
+      },
+      "api_clients_body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "wt5hp8yyv6saj"
+            }
+          },
+          "lastName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ynh14enoiv3a7"
+            }
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date",
+            "x-stoplight": {
+              "id": "a878p05veupuy"
+            }
+          },
+          "password": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "msdk2uy2e9zix"
+            }
+          },
+          "telephone": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "pi1zpn3u9r9d6"
+            }
+          },
+          "dui": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "sc5bqwfebvl7c"
+            }
+          }
+        }
+      },
+      "api_tasks_body": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "5topcxs7d2ohe"
+            }
+          },
+          "description": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "mxny94e4sbue8"
+            }
+          },
+          "completed": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "mwojigd55048u"
+            }
+          }
+        }
+      },
+      "api_tasks_body_1": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "a46vnb8t5of05"
+            }
+          },
+          "description": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "geluh2ngiuese"
+            }
+          },
+          "completed": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "zygpv61zg44z1"
             }
           }
         }
