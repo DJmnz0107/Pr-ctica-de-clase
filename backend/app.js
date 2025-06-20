@@ -9,6 +9,7 @@ import reviewRoutes from "./src/routes/reviews.js"
 import employeeRegisterRoutes from "./src/routes/registerEmployee.js"
 import loginRoute from "./src/routes/login.js"
 import cookieParser from 'cookie-parser';
+import salesRoutes from "./src/routes/sales.js"
 import logoutRoute from "./src/routes/logout.js"
 import registerClientsRoutes from "./src/routes/registerClients.js";
 import RecoveryPasswordRoutes from './src/routes/recoveryPassword.js';
@@ -53,6 +54,7 @@ app.use("/api/registerEmployee", employeeRegisterRoutes);
 app.use("/api/products", productsRoutes);
 app.use("/api/clients", clientRoutes );
 app.use("/api/employees", employeeRoutes);
+app.use("/api/sales", salesRoutes);
 app.use("/api/branches", branchRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/registerEmployee", validateAuthToken(["admin"]), employeeRegisterRoutes);
